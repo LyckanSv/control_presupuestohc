@@ -15,4 +15,6 @@ Route::group([
     $router->resource('aulas', AulaController::class);
     $router->get('/api/edificios', 'EdificioController@edificios');
     $router->resource('dias', DiaController::class);
+    $router->resource('presupuestos', PresupuestoController::class);
+    $router->resource('escuelas', EscuelaController::class);
 });
