@@ -20,4 +20,8 @@ Route::group([
     $router->resource('clase-impartidas', ClaseImpartidaController::class);
     $router->resource('tipo-acreditaciones', TipoAcreditacionController::class);
     $router->resource('directores', DirectorController::class);
+    $router->resource('usuario-acreditacions', UsuarioAcreditacionController::class);
+    $router->resource('bloque-horas', BloqueHoraController::class);
+    $router->resource('estado-clases', EstadoClaseController::class);
+    $router->resource('tipo-usuarios', TipoUsuarioController::class);
 });
