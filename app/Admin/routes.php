@@ -17,4 +17,6 @@ Route::group([
     $router->resource('dias', DiaController::class);
     $router->resource('presupuestos', PresupuestoController::class);
     $router->resource('escuelas', EscuelaController::class);
+    $router->resource('clase-impartidas', ClaseImpartidaController::class);
+    $router->resource('tipo-acreditacions', TipoAcreditacionController::class);
 });
