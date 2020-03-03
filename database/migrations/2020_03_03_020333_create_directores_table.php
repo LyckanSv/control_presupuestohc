@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClaseImpartidasTable extends Migration
+class CreateDirectoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateClaseImpartidasTable extends Migration
      */
     public function up()
     {
-        Schema::create('clase_impartidas', function (Blueprint $table) {
+        Schema::create('directors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('clase_id');
-            $table->date('fecha');
+            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('escuela_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateClaseImpartidasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clase_impartidas');
+        Schema::dropIfExists('directors');
     }
 }
