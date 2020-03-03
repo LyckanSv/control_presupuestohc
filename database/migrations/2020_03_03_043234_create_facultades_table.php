@@ -13,7 +13,7 @@ class CreateFacultadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('facultades', function (Blueprint $table) {
+        Schema::create('facultads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateFacultadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facultades');
+        Schema::dropIfExists('facultads');
     }
 }

@@ -26,7 +26,10 @@ class FacultadController extends AdminController
     {
         $grid = new Grid(new Facultad());
 
-
+        $grid->column('id', __('Id'));
+        $grid->column('nombre', __('Nombre'));
+        $grid->column('created_at', __('Created at'));
+        $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
@@ -41,7 +44,10 @@ class FacultadController extends AdminController
     {
         $show = new Show(Facultad::findOrFail($id));
 
-
+        $show->field('id', __('Id'));
+        $show->field('nombre', __('Nombre'));
+        $show->field('created_at', __('Created at'));
+        $show->field('updated_at', __('Updated at'));
 
         return $show;
     }
@@ -55,7 +61,7 @@ class FacultadController extends AdminController
     {
         $form = new Form(new Facultad());
 
-
+        $form->text('nombre', __('Nombre'));
 
         return $form;
     }

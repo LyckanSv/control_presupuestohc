@@ -24,4 +24,5 @@ Route::group([
     $router->resource('bloque-horas', BloqueHoraController::class);
     $router->resource('estado-clases', EstadoClaseController::class);
     $router->resource('tipo-usuarios', TipoUsuarioController::class);
+    $router->resource('facultads', FacultadController::class);
 });
