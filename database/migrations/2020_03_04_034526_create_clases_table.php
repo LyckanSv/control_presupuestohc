@@ -15,7 +15,6 @@ class CreateClasesTable extends Migration
     {
         Schema::create('clases', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('materia_id');
             $table->unsignedBigInteger('aula_id');
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('bloque_horas_id');

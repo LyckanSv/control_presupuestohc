@@ -26,4 +26,5 @@ Route::group([
     $router->resource('tipo-usuarios', TipoUsuarioController::class);
     $router->resource('facultads', FacultadController::class);
     $router->resource('materias', MateriaController::class);
+    $router->resource('clases', ClaseController::class);
 });
