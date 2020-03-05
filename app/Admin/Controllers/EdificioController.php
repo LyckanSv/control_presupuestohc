@@ -69,6 +69,7 @@ class EdificioController extends AdminController
 
         return $form;
     }
+    
     public function edificios(Request $request)
     {
         $q = $request->get('q');

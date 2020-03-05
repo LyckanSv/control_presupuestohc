@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstadoClasesTable extends Migration
+class CreatePresupuestosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateEstadoClasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('estado_class', function (Blueprint $table) {
+        Schema::create('presupuestos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('estado');
+            $table->unsignedBigInteger('director_id');
+            $table->foreign('director_id')->references('id')->on('directors');
+            $table->date('fecha');
+            $table->decimal('dinero');
             $table->timestamps();
+            
         });
     }
 
@@ -27,6 +31,6 @@ class CreateEstadoClasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado_class');
+        Schema::dropIfExists('presupuestos');
     }
 }

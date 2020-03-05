@@ -79,4 +79,11 @@ class AulaController extends AdminController
         })->ajax('/admin/api/edificios');
         return $form;
     }
+
+    public function aulas(Request $request)
+    {
+        $q = $request->get('q');
+
+        return Aula::where('cod', 'like', "%$q%")->paginate(null, ['id', 'numero as text']);
+    }
 }

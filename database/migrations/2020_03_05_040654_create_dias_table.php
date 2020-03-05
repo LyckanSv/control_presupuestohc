@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstadoClasesTable extends Migration
+class CreateDiasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEstadoClasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('estado_class', function (Blueprint $table) {
+        Schema::create('dias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('estado');
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateEstadoClasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado_class');
+        Schema::dropIfExists('dias');
     }
 }

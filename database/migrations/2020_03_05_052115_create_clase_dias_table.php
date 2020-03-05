@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstadoClasesTable extends Migration
+class CreateClaseDiasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateEstadoClasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('estado_class', function (Blueprint $table) {
+        Schema::create('clase_dias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('estado');
+            $table->unsignedBigInteger('clase_id');
+            $table->foreign('clase_id')->references('id')->on('clases');
+            $table->unsignedBigInteger('dia_id');
+            $table->foreign('dia_id')->references('id')->on('dias');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateEstadoClasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado_class');
+        Schema::dropIfExists('clase_dias');
     }
 }

@@ -16,7 +16,9 @@ class CreateDirectoresTable extends Migration
         Schema::create('directors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('users');
             $table->unsignedBigInteger('escuela_id');
+            $table->foreign('escuela_id')->references('id')->on('escuelas');
             $table->timestamps();
         });
     }

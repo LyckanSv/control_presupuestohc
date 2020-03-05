@@ -11,9 +11,13 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('admin.home');
+    
     $router->resource('edificios', EdificioController::class);
-    $router->resource('aulas', AulaController::class);
     $router->get('/api/edificios', 'EdificioController@edificios');
+
+    $router->resource('aulas', AulaController::class);
+    $router->get('/api/aulas', 'AulaController@aulas');
+    
     $router->resource('dias', DiaController::class);
     $router->resource('presupuestos', PresupuestoController::class);
     $router->resource('escuelas', EscuelaController::class);
