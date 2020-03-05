@@ -71,7 +71,13 @@ class MateriaController extends AdminController
         $form->number('codigo', __('Codigo'));
         $form->text('nombre', __('Nombre'));
         $form->number('unidad_valorativa', __('Unidad valorativa'));
-        $form->number('facultad_id', __('Facultad id'));
+        $form->select('facultad_id')->options(function ($id) {
+            $result = Materia::find($id);
+        
+            if ($result) {
+                return [$result->id => $result->nombre];
+            }
+        })->ajax('/admin/api/facultades');
 
         return $form;
     }

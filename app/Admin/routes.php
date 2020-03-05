@@ -48,12 +48,15 @@ Route::group([
     $router->resource('tipo-usuarios', TipoUsuarioController::class);
     $router->get('/api/tipo-usuarios', 'TipoUsuarioController@tipoUsuarios');
 
-    $router->resource('facultads', FacultadController::class);
+    $router->resource('facultades', FacultadController::class);
     $router->get('/api/facultades', 'FacultadController@facultades');
     
     $router->resource('materias', MateriaController::class);
     $router->get('/api/materias', 'MateriaController@materias');
 
     $router->resource('clases', ClaseController::class);
+    $router->get('/api/clases', 'ClaseController@clases');
+
+    $router->resource('clase-dias', ClaseDiaController::class);
     $router->get('/api/clases', 'ClaseController@clases');
 });
