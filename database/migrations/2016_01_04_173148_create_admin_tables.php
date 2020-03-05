@@ -27,6 +27,9 @@ class CreateAdminTables extends Migration
             $table->string('password', 60);
             $table->string('name');
             $table->string('avatar')->nullable();
+            $table->string('telefono');
+            $table->string('dui');
+            $table->string('direccion');
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();
         });
@@ -97,6 +100,9 @@ class CreateAdminTables extends Migration
             $table->index('user_id');
             $table->timestamps();
         });
+
+        
+
     }
 
     /**
@@ -106,6 +112,7 @@ class CreateAdminTables extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists(config('admin.database.users_table'));
         Schema::dropIfExists(config('admin.database.roles_table'));
         Schema::dropIfExists(config('admin.database.permissions_table'));
@@ -115,5 +122,6 @@ class CreateAdminTables extends Migration
         Schema::dropIfExists(config('admin.database.role_permissions_table'));
         Schema::dropIfExists(config('admin.database.role_menu_table'));
         Schema::dropIfExists(config('admin.database.operation_log_table'));
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Director;
+use App\User;
+use App\Escuela;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -64,8 +66,21 @@ class DirectorController extends AdminController
     {
         $form = new Form(new Director());
 
-        $form->number('usuario_id', __('Usuario id'));
-        $form->number('escuela_id', __('Escuela id'));
+        $form->select('usuario_id')->options(function ($id) {
+            $result = User::find($id);
+        
+            if ($result) {
+                return [$result->id => $result->name];
+            }
+        })->ajax('/admin/api/admin-users');
+
+        $form->select('escuela_id')->options(function ($id) {
+            $result = Escuela::find($id);
+        
+            if ($result) {
+                return [$result->id => $result->nombre];
+            }
+        })->ajax('/admin/api/escuelas');
 
         return $form;
     }

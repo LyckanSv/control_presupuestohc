@@ -3,6 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\ClaseDia;
+use App\Dia;
+use App\Clase;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -63,8 +65,19 @@ class ClaseDiaController extends AdminController
     {
         $form = new Form(new ClaseDia());
 
-        $form->number('clase_id', __('Clase id'));
-        $form->number('dia_id', __('Dia id'));
+        $form->select('clase_id')->options(function ($id) {
+            $result = Clase::find($id);
+            if ($result) {
+                return [$result->id => $result->codigo];
+            }
+        })->ajax('/admin/api/clases');
+
+        $form->select('dia_id')->options(function ($id) {
+            $result = Dia::find($id);
+            if ($result) {
+                return [$result->id => $result->name];
+            }
+        })->ajax('/admin/api/dias');
 
         return $form;
     }

@@ -21,14 +21,14 @@ class CreateClasesTable extends Migration
             $table->unsignedBigInteger('aula_id');
             $table->foreign('aula_id')->references('id')->on('aulas');
 
-            $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('users');
+            $table->unsignedInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on(config('admin.database.users_table'))->onDelete('cascade');;
 
             $table->unsignedBigInteger('bloque_horas_id');
             $table->foreign('bloque_horas_id')->references('id')->on('bloque_horas');
 
             $table->unsignedBigInteger('estado_clase_id');
-            $table->foreign('estado_clase_id')->references('id')->on('estado_class');
+            $table->foreign('estado_clase_id')->references('id')->on('estado_clases');
             
             $table->integer('codigo');
             $table->date('fecha_inicio_curso');

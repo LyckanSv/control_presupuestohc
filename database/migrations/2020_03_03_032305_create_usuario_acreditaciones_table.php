@@ -15,8 +15,8 @@ class CreateUsuarioAcreditacionesTable extends Migration
     {
         Schema::create('usuario_acreditacions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('users');
+            $table->unsignedInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on(config('admin.database.users_table'))->onDelete('cascade');;
             $table->unsignedBigInteger('tipo_acreditacion_id');
             $table->foreign('tipo_acreditacion_id')->references('id')->on('tipo_acreditacions');
             $table->timestamps();

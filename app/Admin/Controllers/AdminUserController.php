@@ -2,21 +2,21 @@
 
 namespace App\Admin\Controllers;
 
-use App\User;
+use App\AdminUser;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Illuminate\Http\Request;
 
-class UserController extends AdminController
+class AdminUserController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'App\User';
+    protected $title = 'App\AdminUser';
 
     /**
      * Make a grid builder.
@@ -25,16 +25,13 @@ class UserController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new User());
+        $grid = new Grid(new AdminUser());
 
         $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
-        $grid->column('email', __('Email'));
-        $grid->column('email_verified_at', __('Email verified at'));
+        $grid->column('username', __('Username'));
         $grid->column('password', __('Password'));
-        $grid->column('telefono', __('Telefono'));
-        $grid->column('dui', __('Dui'));
-        $grid->column('direccion', __('Direccion'));
+        $grid->column('name', __('Name'));
+        $grid->column('avatar', __('Avatar'));
         $grid->column('remember_token', __('Remember token'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
@@ -50,16 +47,13 @@ class UserController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(User::findOrFail($id));
+        $show = new Show(AdminUser::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('name', __('Name'));
-        $show->field('email', __('Email'));
-        $show->field('email_verified_at', __('Email verified at'));
+        $show->field('username', __('Username'));
         $show->field('password', __('Password'));
-        $show->field('telefono', __('Telefono'));
-        $show->field('dui', __('Dui'));
-        $show->field('direccion', __('Direccion'));
+        $show->field('name', __('Name'));
+        $show->field('avatar', __('Avatar'));
         $show->field('remember_token', __('Remember token'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -74,24 +68,21 @@ class UserController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new User());
+        $form = new Form(new AdminUser());
 
-        $form->text('name', __('Name'));
-        $form->email('email', __('Email'));
-        $form->datetime('email_verified_at', __('Email verified at'))->default(date('Y-m-d H:i:s'));
+        $form->text('username', __('Username'));
         $form->password('password', __('Password'));
-        $form->text('telefono', __('Telefono'));
-        $form->text('dui', __('Dui'));
-        $form->text('direccion', __('Direccion'));
+        $form->text('name', __('Name'));
+        $form->image('avatar', __('Avatar'));
         $form->text('remember_token', __('Remember token'));
 
         return $form;
     }
 
-    public function users(Request $request)
+    public function adminUsers(Request $request)
     {
         $q = $request->get('q');
 
-        return User::where('id', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return AdminUser::where('id', 'like', "%$q%")->paginate(null, ['id', 'username as text']);
     }
 }

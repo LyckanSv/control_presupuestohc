@@ -13,7 +13,7 @@ class CreateEstadoClasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('estado_class', function (Blueprint $table) {
+        Schema::create('estado_clases', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('estado');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateEstadoClasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado_class');
+        Schema::dropIfExists('estado_clases');
     }
 }

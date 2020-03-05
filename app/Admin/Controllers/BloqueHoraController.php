@@ -74,6 +74,6 @@ class BloqueHoraController extends AdminController
     {
         $q = $request->get('q');
 
-        return BloqueHoraController::where('id', 'like', "%$q%")->paginate(null, ['id', 'hora_entrada as text']);
+        return BloqueHora::where('id', 'like', "%$q%")->paginate(null, ['id', 'hora_entrada as text']);
     }
 }

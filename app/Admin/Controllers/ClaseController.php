@@ -4,6 +4,10 @@ namespace App\Admin\Controllers;
 
 use App\Clase;
 use App\Aula;
+use App\Materia;
+use App\AdminUser;
+use App\BloqueHora;
+use App\EstadoClase;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -85,16 +89,41 @@ class ClaseController extends AdminController
     {
         $form = new Form(new Clase());
 
-        $form->number('materia_id', __('Materia id'));
+        $form->select('materia_id')->options(function ($id) {
+            $result = Materia::find($id);
+        
+            if ($result) {
+                return [$result->id => $result->name];
+            }
+        })->ajax('/admin/api/materias');
+
         $form->select('aula_id')->options(function ($id) {
             $result = Aula::find($id);
             if ($result) {
                 return [$result->id => $result->numero];
             }
         })->ajax('/admin/api/aulas');
-        $form->number('usuario_id', __('Usuario id'));
-        $form->number('bloque_horas_id', __('Bloque horas id'));
-        $form->number('estado_clase_id', __('Estado clase id'));
+
+        $form->select('usuario_id')->options(function ($id) {
+            $result = AdminUser::find($id);
+            if ($result) {
+                return [$result->id => $result->username];
+            }
+        })->ajax('/admin/api/admin-users');
+
+        $form->select('bloque_horas_id')->options(function ($id) {
+            $result = BloqueHora::find($id);
+            if ($result) {
+                return [$result->id => $result->hora_entrada];
+            }
+        })->ajax('/admin/api/bloque-horas');
+
+        $form->select('estado_clase_id')->options(function ($id) {
+            $result = EstadoClase::find($id);
+            if ($result) {
+                return [$result->id => $result->estado];
+            }
+        })->ajax('/admin/api/estado-clases');
         $form->number('codigo', __('Codigo'));
         $form->date('fecha_inicio_curso', __('Fecha inicio curso'))->default(date('Y-m-d'));
         $form->date('fecha_finalizacion_curso', __('Fecha finalizacion curso'))->default(date('Y-m-d'));
@@ -110,6 +139,6 @@ class ClaseController extends AdminController
     {
         $q = $request->get('q');
 
-        return Clase::where('id', 'like', "%$q%")->paginate(null, ['id', 'codigo as text']);
+        return Clase::where('id', 'like', "%$q%")->paginate(null, ['id', 'seccion as text']);
     }
 }

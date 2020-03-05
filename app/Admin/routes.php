@@ -31,12 +31,12 @@ Route::group([
     $router->get('/api/clase-impartidas', 'ClaseImpartidaController@clasesImpartidas');    
 
     $router->resource('tipo-acreditaciones', TipoAcreditacionController::class);
-    $router->get('/api/tipo-acreditaciones', 'AulaController@tipoAcreditaciones');
+    $router->get('/api/tipo-acreditaciones', 'TipoAcreditacionController@tipoAcreditaciones');
 
     $router->resource('directores', DirectorController::class);
     $router->get('/api/directores', 'DirectorController@directores');
 
-    $router->resource('usuario-acreditacions', UsuarioAcreditacionController::class);
+    $router->resource('usuario-acreditaciones', UsuarioAcreditacionController::class);
     $router->get('/api/usuario-acreditaciones', 'UsuarioAcreditacionController@usuarioAcreditaciones');
 
     $router->resource('bloque-horas', BloqueHoraController::class);
@@ -58,5 +58,11 @@ Route::group([
     $router->get('/api/clases', 'ClaseController@clases');
 
     $router->resource('clase-dias', ClaseDiaController::class);
-    $router->get('/api/clases', 'ClaseController@clases');
+    $router->get('/api/clases-dias', 'ClaseController@claseDias');
+
+    $router->resource('users', UserController::class);
+    $router->get('/api/users', 'UserController@users');
+
+    $router->get('/api/admin-users', 'AdminUserController@adminUsers');
+
 });

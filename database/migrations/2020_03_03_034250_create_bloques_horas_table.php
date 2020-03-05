@@ -15,8 +15,8 @@ class CreateBloquesHorasTable extends Migration
     {
         Schema::create('bloque_horas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTimeTz('hora_entrada');
-            $table->dateTimeTz('hora_salida');
+            $table->time('hora_entrada');
+            $table->time('hora_salida');
             $table->timestamps();
         });
     }
