@@ -8,6 +8,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class ClaseController extends AdminController
 {
@@ -103,5 +104,12 @@ class ClaseController extends AdminController
         $form->decimal('sueldo_hora', __('Sueldo hora'));
 
         return $form;
+    }
+
+    public function clases(Request $request)
+    {
+        $q = $request->get('q');
+
+        return Clase::where('id', 'like', "%$q%")->paginate(null, ['id', 'codigo as text']);
     }
 }

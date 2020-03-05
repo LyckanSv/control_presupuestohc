@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class DiaController extends AdminController
 {
@@ -64,5 +65,12 @@ class DiaController extends AdminController
         $form->text('nombre', __('Nombre'));
 
         return $form;
+    }
+
+    public function dias(Request $request)
+    {
+        $q = $request->get('q');
+
+        return Dia::where('id', 'like', "%$q%")->paginate(null, ['id', 'nombre as text']);
     }
 }

@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class EscuelaController extends AdminController
 {
@@ -64,5 +65,12 @@ class EscuelaController extends AdminController
         $form->text('nombre', __('Nombre'));
 
         return $form;
+    }
+
+    public function escuelas(Request $request)
+    {
+        $q = $request->get('q');
+
+        return Escuela::where('id', 'like', "%$q%")->paginate(null, ['id', 'nombre as text']);
     }
 }

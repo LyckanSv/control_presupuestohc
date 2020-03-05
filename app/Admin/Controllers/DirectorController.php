@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class DirectorController extends AdminController
 {
@@ -67,5 +68,12 @@ class DirectorController extends AdminController
         $form->number('escuela_id', __('Escuela id'));
 
         return $form;
+    }
+
+    public function dias(Request $request)
+    {
+        $q = $request->get('q');
+
+        return DirectorController::where('id', 'like', "%$q%")->paginate(null, ['id', 'usuario_id as text']);
     }
 }

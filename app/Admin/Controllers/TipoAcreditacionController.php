@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class TipoAcreditacionController extends AdminController
 {
@@ -68,4 +69,12 @@ class TipoAcreditacionController extends AdminController
 
         return $form;
     }
+
+    public function tipoAcreditaciones(Request $request)
+    {
+        $q = $request->get('q');
+
+        return TipoAcreditacion::where('id', 'like', "%$q%")->paginate(null, ['id', 'nombre as text']);
+    }
+    
 }

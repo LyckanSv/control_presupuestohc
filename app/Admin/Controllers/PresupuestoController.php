@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class PresupuestoController extends AdminController
 {
@@ -70,5 +71,12 @@ class PresupuestoController extends AdminController
         $form->decimal('dinero', __('Dinero'));
 
         return $form;
+    }
+
+    public function materias(Request $request)
+    {
+        $q = $request->get('q');
+
+        return Presupuesto::where('id', 'like', "%$q%")->paginate(null, ['id', 'nombre as text']);
     }
 }
