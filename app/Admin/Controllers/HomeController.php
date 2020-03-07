@@ -3,10 +3,10 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\Dashboard;
-use Encore\Admin\Layout\Column;
+use App\Admin\Forms\UploadFile;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Layout\Row;
+
+
 
 class HomeController extends Controller
 {
@@ -15,20 +15,6 @@ class HomeController extends Controller
         return $content
             ->title('Panel')
             ->description('Ayuda a administrar las horas clases')
-            ->row(Dashboard::title())
-            ->row(function (Row $row) {
-
-                // $row->column(4, function (Column $column) {
-                //     $column->append(Dashboard::environment());
-                // });
-
-                // $row->column(4, function (Column $column) {
-                //     $column->append(Dashboard::extensions());
-                // });
-
-                // $row->column(4, function (Column $column) {
-                //     $column->append(Dashboard::dependencies());
-                // });
-            });
+            ->body(new UploadFile());
     }
 }
