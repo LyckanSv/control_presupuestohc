@@ -3,19 +3,34 @@
 namespace App\Imports;
 
 use App\ExcelPayload;
-use Maatwebsite\Excel\Concerns\ToModel;
+use App\Materia;
 
-class ExcelImport implements ToModel
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
+
+class ExcelImport implements ToCollection
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
-        return new ExcelPayload([
-            'id' => $row[0]
-        ]);
+        $rowIndex = 0;
+        $rowInit = 7;
+        foreach ($rows as $row) 
+        {
+            if($rowIndex > 7) {
+                
+
+                if ($row[0] != null) {
+                    $materiasFiltradas = Materia::where('codigo', $row[0])->get();
+                    
+                     if(sizeof($materiasFiltradas) > 0){
+                        \Log::debug($row);
+                     }else {
+                        throw new \Exception("Una o alguna de las materias no existe");
+                     }
+                }
+            }
+            
+            $rowIndex = $rowIndex + 1;
+        }
     }
 }

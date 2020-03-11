@@ -22,7 +22,8 @@ class AdminTablesSeeder extends Seeder
         ]);
 
         // create a role.
-        Role::truncate();
+        
+        //Role::truncate();
         Role::create([
             'name' => 'Administrator',
             'slug' => 'administrator',
@@ -32,7 +33,7 @@ class AdminTablesSeeder extends Seeder
         Administrator::first()->roles()->save(Role::first());
 
         //create a permission
-        Permission::truncate();
+        //Permission::truncate();
         Permission::insert([
             [
                 'name'        => 'All permission',
@@ -69,7 +70,7 @@ class AdminTablesSeeder extends Seeder
         Role::first()->permissions()->save(Permission::first());
 
         // add default menus.
-        Menu::truncate();
+        //Menu::truncate();
         Menu::insert([
             [
                 'parent_id' => 0,

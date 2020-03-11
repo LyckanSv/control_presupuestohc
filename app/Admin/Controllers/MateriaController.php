@@ -68,7 +68,7 @@ class MateriaController extends AdminController
     {
         $form = new Form(new Materia());
 
-        $form->number('codigo', __('Codigo'));
+        $form->text('codigo', __('Codigo'));
         $form->text('nombre', __('Nombre'));
         $form->number('unidad_valorativa', __('Unidad valorativa'));
         $form->select('facultad_id')->options(function ($id) {

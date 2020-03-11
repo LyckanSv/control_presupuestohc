@@ -31,8 +31,8 @@ class UploadFile extends Form
         $aa = Storage::disk('admin')->put('test', $request->excel);
         $contents = Storage::disk('admin')->get($aa);
 
-        $data = Excel::toArray(new ExcelPayload, $request->excel);
-        dd($data[0][1][0]);
+        Excel::import(new ExcelImport, $request->excel);
+        
        
         admin_success('Processed successfully.');
 
