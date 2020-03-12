@@ -65,4 +65,7 @@ Route::group([
 
     $router->get('/api/admin-users', 'AdminUserController@adminUsers');
 
+    $router->resource('user-infos', UserInfoController::class);
+    $router->resource('horas', HoraController::class);
+
 });
