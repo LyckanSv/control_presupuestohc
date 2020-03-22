@@ -12,14 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     
-    $router->resource('edificios', EdificioController::class);
-    $router->get('/api/edificios', 'EdificioController@edificios');
-
-    $router->resource('aulas', AulaController::class);
-    $router->get('/api/aulas', 'AulaController@aulas');
-    
-    $router->resource('dias', DiaController::class);
-    $router->get('/api/dias', 'DiaController@dias');
 
     $router->resource('presupuestos', PresupuestoController::class);
     $router->get('/api/presupuestos', 'PresupuestoController@presupuestos');
@@ -27,38 +19,11 @@ Route::group([
     $router->resource('escuelas', EscuelaController::class);
     $router->get('/api/escuelas', 'EscuelaController@escuelas');
 
-    $router->resource('clase-impartidas', ClaseImpartidaController::class);
-    $router->get('/api/clase-impartidas', 'ClaseImpartidaController@clasesImpartidas');    
-
-    $router->resource('tipo-acreditaciones', TipoAcreditacionController::class);
-    $router->get('/api/tipo-acreditaciones', 'TipoAcreditacionController@tipoAcreditaciones');
-
-    $router->resource('directores', DirectorController::class);
-    $router->get('/api/directores', 'DirectorController@directores');
-
-    $router->resource('usuario-acreditaciones', UsuarioAcreditacionController::class);
-    $router->get('/api/usuario-acreditaciones', 'UsuarioAcreditacionController@usuarioAcreditaciones');
-
-    $router->resource('bloque-horas', BloqueHoraController::class);
-    $router->get('/api/bloque-horas', 'BloqueHoraController@bloqueHoras');
-
-    $router->resource('estado-clases', EstadoClaseController::class);
-    $router->get('/api/estado-clases', 'EstadoClaseController@estadoClases');
-
-    $router->resource('tipo-usuarios', TipoUsuarioController::class);
-    $router->get('/api/tipo-usuarios', 'TipoUsuarioController@tipoUsuarios');
-
     $router->resource('facultades', FacultadController::class);
     $router->get('/api/facultades', 'FacultadController@facultades');
     
     $router->resource('materias', MateriaController::class);
     $router->get('/api/materias', 'MateriaController@materias');
-
-    $router->resource('clases', ClaseController::class);
-    $router->get('/api/clases', 'ClaseController@clases');
-
-    $router->resource('clase-dias', ClaseDiaController::class);
-    $router->get('/api/clases-dias', 'ClaseController@claseDias');
 
     $router->resource('users', UserController::class);
     $router->get('/api/users', 'UserController@users');
@@ -67,5 +32,12 @@ Route::group([
 
     $router->resource('user-infos', UserInfoController::class);
     $router->resource('horas', HoraController::class);
+
+    //REPORTES
+    $router->resource('reporte-director', ReporteDirectorController::class);
+    $router->resource('reporte-catedratico', ReporteCatedraticoController::class);
+    $router->resource('reporte-decano', ReporteDecanoController::class);
+
+    $router->get('ReporteCatedratico/saveaaa', 'ReporteCatedraticoController@saveaaa');
 
 });

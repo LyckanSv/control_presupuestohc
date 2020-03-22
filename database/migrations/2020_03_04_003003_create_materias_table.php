@@ -19,7 +19,9 @@ class CreateMateriasTable extends Migration
             $table->string('nombre');
             $table->integer('unidad_valorativa');
             $table->unsignedBigInteger('facultad_id');
+            $table->unsignedBigInteger('escuela_id');
             $table->foreign('facultad_id')->references('id')->on('facultads');
+            $table->foreign('escuela_id')->references('id')->on('escuelas');
             $table->timestamps();
         });
     }

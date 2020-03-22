@@ -3,13 +3,10 @@
 namespace App\Admin\Controllers;
 
 use App\UsuarioAcreditacion;
-use App\AdminUser;
-use App\TipoAcreditacion;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use Illuminate\Http\Request;
 
 class UsuarioAcreditacionController extends AdminController
 {
@@ -32,6 +29,7 @@ class UsuarioAcreditacionController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('usuario_id', __('Usuario id'));
         $grid->column('tipo_acreditacion_id', __('Tipo acreditacion id'));
+        $grid->column('Acreditacion', __('Acreditacion'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -50,7 +48,7 @@ class UsuarioAcreditacionController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('usuario_id', __('Usuario id'));
-        $show->field('tipo_acreditacion_id', __('Tipo acreditacion id'));
+        $show->field('Acreditacion', __('Acreditacion'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -66,29 +64,10 @@ class UsuarioAcreditacionController extends AdminController
     {
         $form = new Form(new UsuarioAcreditacion());
 
-        $form->select('usuario_id')->options(function ($id) {
-            $result = AdminUser::find($id);
-        
-            if ($result) {
-                return [$result->id => $result->name];
-            }
-        })->ajax('/admin/api/admin-users');
-        $form->select('tipo_acreditacion_id')->options(function ($id) {
-            $result = TipoAcreditacion::find($id);
-        
-            if ($result) {
-                return [$result->id => $result->name];
-            }
-        })->ajax('/admin/api/tipo-acreditaciones');
+        $form->number('usuario_id', __('Usuario id'));
+        $form->number('tipo_acreditacion_id', __('Tipo acreditacion id'));
+        $form->text('Acreditacion', __('Acreditacion'));
 
         return $form;
     }
-
-    public function usuarioAcreditaciones(Request $request)
-    {
-        $q = $request->get('q');
-
-        return UsuarioAcreditacion::where('id', 'like', "%$q%")->paginate(null, ['id', 'tipo as text']);
-    }
-    
 }

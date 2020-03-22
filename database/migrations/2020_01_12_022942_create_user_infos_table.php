@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiasTable extends Migration
+class CreateUserInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateDiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('dias', function (Blueprint $table) {
+        Schema::create('user_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
+            $table->unsignedInteger('usuario_id');
+            $table->string('codigo');
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->enum('estado',['Impartidad', 'No Impartida', 'Cancelada']);
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateDiasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dias');
+        Schema::dropIfExists('user_infos');
     }
 }
