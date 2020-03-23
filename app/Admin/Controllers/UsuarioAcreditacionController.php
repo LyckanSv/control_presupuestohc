@@ -3,6 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\UsuarioAcreditacion;
+use App\AdminUser;
+
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -48,6 +50,7 @@ class UsuarioAcreditacionController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('usuario_id', __('Usuario id'));
+        
         $show->field('Acreditacion', __('Acreditacion'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -64,9 +67,14 @@ class UsuarioAcreditacionController extends AdminController
     {
         $form = new Form(new UsuarioAcreditacion());
 
-        $form->number('usuario_id', __('Usuario id'));
-        $form->number('tipo_acreditacion_id', __('Tipo acreditacion id'));
-        $form->text('Acreditacion', __('Acreditacion'));
+        $form->select('usuario_id')->options(function ($id) {
+            $result = AdminUser::find($id);
+            if ($result) {
+                return [$result->id => $result->username];
+            }
+        })->ajax('/admin/api/admin-users'); 
+        $form->select('Acreditacion', 'Acreditacion')->options(['Maestria1' => 'Maestria1', 'Maestria2' => 'Maestria2', 'Doctorado' => 'Doctorado', 'Doctrinado' => 'Doctrinado']);
+
 
         return $form;
     }

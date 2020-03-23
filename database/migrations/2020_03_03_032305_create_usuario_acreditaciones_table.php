@@ -17,7 +17,7 @@ class CreateUsuarioAcreditacionesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on(config('admin.database.users_table'))->onDelete('cascade');;
-            $table->enum('Acreditacion',['Doctorado']);
+            $table->enum('Acreditacion',['Maestria1', 'Maestria2', 'Doctorado', 'Doctrinado']);
             $table->timestamps();
         });
     }

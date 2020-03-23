@@ -24,7 +24,7 @@ class CreateHorasTable extends Migration
             $table->string('inscritos');
             $table->string('disponible');
             $table->string('aula');
-            $table->enum('estado',['cerrado', 'abierto']);
+            $table->enum('estado',['Impartidad', 'No Impartida', 'Cancelada']);
             $table->timestamps();
 
             $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');

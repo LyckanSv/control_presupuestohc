@@ -88,7 +88,6 @@ class HoraController extends AdminController
         $form->text('inscritos', __('Inscritos'));
         $form->text('disponible', __('Disponible'));
         $form->text('aula', __('Aula'));
-        $form->text('estado', __('Estado'));
         $form->select('estado', 'Estado')->options(['cerrado' => 'Cerrado', 'abierto' => 'Abierto']);
 
 

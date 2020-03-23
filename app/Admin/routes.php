@@ -15,6 +15,8 @@ Route::group([
 
     $router->resource('presupuestos', PresupuestoController::class);
     $router->get('/api/presupuestos', 'PresupuestoController@presupuestos');
+
+    $router->resource('acreditaciones', UsuarioAcreditacionController::class);
     
     $router->resource('escuelas', EscuelaController::class);
     $router->get('/api/escuelas', 'EscuelaController@escuelas');
@@ -38,6 +40,5 @@ Route::group([
     $router->resource('reporte-catedratico', ReporteCatedraticoController::class);
     $router->resource('reporte-decano', ReporteDecanoController::class);
 
-    $router->get('ReporteCatedratico/saveaaa', 'ReporteCatedraticoController@saveaaa');
 
 });

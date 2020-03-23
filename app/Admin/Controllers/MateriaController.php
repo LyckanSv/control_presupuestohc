@@ -32,6 +32,7 @@ class MateriaController extends AdminController
         $grid->column('nombre', __('Nombre'));
         $grid->column('unidad_valorativa', __('Unidad valorativa'));
         $grid->column('facultad_id', __('Facultad id'));
+        $grid->column('escuela_id', __('Facultad id'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -78,6 +79,13 @@ class MateriaController extends AdminController
                 return [$result->id => $result->nombre];
             }
         })->ajax('/admin/api/facultades');
+        $form->select('escuela_id')->options(function ($id) {
+            $result = Materia::find($id);
+        
+            if ($result) {
+                return [$result->id => $result->nombre];
+            }
+        })->ajax('/admin/api/escuelas');
 
         return $form;
     }
