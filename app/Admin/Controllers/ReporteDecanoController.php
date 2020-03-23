@@ -87,7 +87,11 @@ class ReporteDecanoController extends Controller
                     }
 
                     $totalClases += 300 + $totaPorAcreditacion;
-                    $totalClasesEfectivas += 300 + $totaPorAcreditacionEfectiva;
+                    if($hora->estado != "No Impartida") {
+                        
+                        $totalClasesEfectivas += 300 + $totaPorAcreditacionEfectiva;
+                    }
+                    
                 }
             }
             array_push($rows,[$value->nombre, $totalClases, $totalClasesEfectivas]);
