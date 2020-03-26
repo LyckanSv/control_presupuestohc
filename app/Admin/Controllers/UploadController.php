@@ -8,13 +8,13 @@ use Encore\Admin\Layout\Content;
 
 
 
-class HomeController extends Controller
+class UploadController extends Controller
 {
     public function index(Content $content)
     {
         return $content
             ->title('Panel')
-            ->description('Ayuda a administrar las horas clases');
-            
+            ->description('Ayuda a administrar las horas clases')
+            ->body(new UploadFile());
     }
 }

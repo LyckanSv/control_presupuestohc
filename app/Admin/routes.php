@@ -11,6 +11,7 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('admin.home');
+    $router->get('uploadExcel', 'UploadController@index');
     
 
     $router->resource('presupuestos', PresupuestoController::class);
